@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <img
+        src="{% static 'img/image.png' %}"
+        alt="PU logo"
+        class="img-fluid mx-auto d-block mt-5">
+        <div class="container mt-5">
+            <h1 class="text-center">EduAnalytics - Final Exam Data Science Team 7</h1>
+        </div>
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Kartika
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Kartika Usecase</h5>
+                    <p class="card-text">Kartika's usecase description.</p>
+                    <a href="#" class="btn btn-primary">Try to Predict</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Farhan
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Farhan Usecase</h5>
+                    <p class="card-text">Farhan's usecase description.</p>
+                    <a href="#" class="btn btn-primary">Try to Predict</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Miko
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Miko Usecase</h5>
+                    <p class="card-text">Miko's usecase description.</p>
+                    <a href="#" class="btn btn-primary">Try to Predict</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Nada
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Course Recommendation Analysis</h5>
+                    <p class="card-text">📚✨ This Course Recommendation Analysis system helps
+                        students plan their semester wisely by analyzing course combinations. It uses
+                        the 🧩 Apriori algorithm and past enrollment data to check if two courses should
+                        be taken together. It looks at difficulty levels (for example, Hard) and average
+                        grades 📊 to make a recommendation. If both courses are hard, it will suggest
+                        not to take them together, which helps students have a better learning
+                        experience. 🚦✅ This system also helps academic advisors and departments make
+                        better plans for students. 🎓📝</p>
+                    <a href="/course_recommendation" class="btn btn-primary">Try to Predict</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Najla
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Attendance Prediction</h5>
+                    <p class="card-text">📊✨ The Attendance Prediction page helps students estimate
+                        their attendance percentage for a particular course based on past academic
+                        records. 📝👨‍🎓 Students just need to fill in their name, previous average
+                        assignment score, and previous average semester grade, and select the course and
+                        semester they plan to take. After clicking "Predict Attendance," the system will
+                        calculate and display their predicted attendance as a percentage with a bar
+                        chart. 💻🔢 This feature helps students plan better and understand their
+                        learning progress. 🎯📈</p>
+                    <a href="/attendance_prediction_dashboard" class="btn btn-primary">Try to Predict</a>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

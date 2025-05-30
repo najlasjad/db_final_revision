@@ -13,7 +13,7 @@ import pandas as pd
 from django.http import JsonResponse, HttpResponse
 
 def base(request):
-    return render(request, 'base.html')
+    return render(request, 'base_content.html')
 
 
 def predict_attendance_view(request):
