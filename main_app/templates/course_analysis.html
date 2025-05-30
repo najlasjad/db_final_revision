@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block title %}Course Analysis Results{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mb-4">
+                <div class="card-header text-white" style="background-color: #343a40;">
+                    <h2 class="mb-0" style="color: white;"> Department: {{ analysis_result.department }}</h2>
+                </div>
+                <div class="card-body">
+                    <!-- Course Information -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100 bg-light">
+                                <div class="card-body">
+                                    <h3 class="card-title"> {{ analysis_result.course1.name }}</h3>
+                                    <hr>
+                                    <p><strong>Difficulty:</strong> {{ analysis_result.course1.difficulty }}</p>
+                                    <p><strong>Average Score:</strong> {{ analysis_result.course1.avg_score }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 bg-light">
+                                <div class="card-body">
+                                    <h3 class="card-title"> {{ analysis_result.course2.name }}</h3>
+                                    <hr>
+                                    <p><strong>Difficulty:</strong> {{ analysis_result.course2.difficulty }}</p>
+                                    <p><strong>Average Score:</strong> {{ analysis_result.course2.avg_score }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recommendation -->
+                    <div class="card mb-4">
+                        <div class="card-header text-white" style="background-color: #343a40;">
+                            <h3 class="mb-0" style="color: white;"> Recommendation</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead">{{ analysis_result.recommendation }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Visualization -->
+                    
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'course_recommendation' %}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Predict
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

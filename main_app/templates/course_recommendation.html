@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Course Recommendation{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header text-white" style="background-color: #343a40;">
+                    <h2 class="mb-0" style="color: white;">Course Recommendation Analysis</h2>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="post" action="{% url 'course_analysis' %}">
+                        {% csrf_token %}
+                        
+                        <!-- Department Selection -->
+                        <div class="form-group mb-3">
+                            <label for="department"><strong>Department:</strong></label>
+                            <select id="department" name="department" class="form-control" required>
+                                <option value="">-- Select Department --</option>
+                                {% for dept in departments %}
+                                    <option value="{{ dept }}" {% if selected_department == dept %}selected{% endif %}>{{ dept }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <!-- Course Selection -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="course1"><strong>First Course:</strong></label>
+                                    <select id="course1" name="course1" class="form-control" required>
+                                        <option value="">-- Select Course --</option>
+                                        {% for course in courses %}
+                                            <option value="{{ course }}">{{ course }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="course2"><strong>Second Course:</strong></label>
+                                    <select id="course2" name="course2" class="form-control" required>
+                                        <option value="">-- Select Course --</option>
+                                        {% for course in courses %}
+                                            <option value="{{ course }}">{{ course }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+                           <button type="submit" class="btn" style="background-color: #343a40; border-color: #343a40; color: white">
+                                <i class="fas fa-chart-line"></i> Analyze Courses
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>Analysis is based on historical enrollment data and uses the Apriori algorithm.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // When department changes, update course options
+        $('#department').change(function() {
+            var department = $(this).val();
+            
+            if (department) {
+                // AJAX call to get courses for the selected department
+                $.getJSON("{% url 'get_courses' %}", {department: department}, function(data) {
+                    // Clear current options
+                    $('#course1, #course2').empty().append('<option value="">-- Select Course --</option>');
+                    
+                    // Add new options
+                    $.each(data, function(index, course) {
+                        $('#course1, #course2').append(
+                            $('<option></option>').val(course).text(course)
+                        );
+                    });
+                });
+            } else {
+                // If no department selected, clear course dropdowns
+                $('#course1, #course2').empty().append('<option value="">-- Select Course --</option>');
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

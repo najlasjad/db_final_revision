@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Attendance Prediction</h1>
+        <p>Use this page to predict student attendance based on historical data.</p>
+
+        <div class="row justify-content-center">
+            <!-- Left: Form Section -->
+            <div class="col-md-6 mb-4">
+                <div class="p-4 border rounded shadow bg-white">
+                    <div class="container mt-4">
+                        <form method="post" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.average_score.label_tag }}
+                                {{ form.average_score }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.grade.label_tag }}
+                                {{ form.grade }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.course_id.label_tag }}
+                                {{ form.course_id }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.semester_id.label_tag }}
+                                {{ form.semester_id }}
+                            </div>
+                            <div class="mt-3 text-end">
+                                <button type="submit" class="btn btn-primary">Predict Attendance</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Prediction Result Section -->
+            <div class="col-md-6">
+                <div class="p-4 border rounded shadow bg-white">
+                    {% if prediction %}
+                        <h5 class="mb-3">Prediction Result for
+                            {{ name }}</h5>
+                        <div class="prediction-result mb-3">
+                            Predicted Attendance:
+                            {{ prediction|floatformat:1 }}%
+                        </div>
+                        <div class="chart-container">
+                            {{ chart|safe }}
+                        </div>
+                    {% else %}
+                        <h5 class="mb-3">Prediction Result</h5>
+                        <p>Submit the form to see the prediction</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
