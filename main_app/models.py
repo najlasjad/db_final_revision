@@ -137,7 +137,7 @@ class ModelInfo(models.Model):
     model_name = models.CharField(max_length=255)
     model_encorlabel = models.CharField(max_length=255, default='LabelEncoder')
     model_file = models.CharField(max_length=255)
-    training_data = models.CharField(max_length=255, default='learnstyle_dataset.csv')
+    training_data = models.CharField(max_length=255, default='all_data_joined.csv')
     training_date = models.DateTimeField()
     model_summary = models.TextField()
 
@@ -152,7 +152,7 @@ from django.db import models
 
 class ModelNajla(models.Model):
     model_name = models.CharField(max_length=255)
-    model_file = models.FileField(upload_to='models/')
+    model_file = models.FileField(upload_to='models/', default='xgb_model_student_attendance.pkl')
     training_data = models.CharField(max_length=255, default='all_data_joined.csv')
     training_date = models.DateTimeField(auto_now_add=True)
     model_summary = models.TextField()

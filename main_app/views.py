@@ -164,7 +164,7 @@ def create_visualization(rule_data, course1, course2):
 
     if rule_data is None or rule_data.empty:
         plt.text(0.5, 0.5, f"No association rule found between {course1} and {course2}",
-                 horizontalalignment='center', verticalalignment='center')
+                horizontalalignment='center', verticalalignment='center')
     else:
         metrics = ['support', 'confidence', 'lift']
         values = [rule_data[metric].values[0] for metric in metrics]
