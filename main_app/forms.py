@@ -14,7 +14,7 @@ class AttendancePredictionForm(forms.Form):
         widget=forms.NumberInput(attrs={'step': '0.1', 'class': 'form-control'})
     )
     grade = forms.FloatField(
-        label='Previous Semester Grade',
+        label='Previous Average Semester Grade',
         min_value=0,
         max_value=100,
         widget=forms.NumberInput(attrs={'step': '0.1', 'class': 'form-control'})
