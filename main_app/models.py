@@ -147,6 +147,22 @@ class ModelInfo(models.Model):
 
     def __str__(self):    
         return self.model_name
+
+from django.db import models
+
+class ModelNajla(models.Model):
+    model_name = models.CharField(max_length=255)
+    model_file = models.FileField(upload_to='models/')
+    training_data = models.CharField(max_length=255, default='all_data_joined.csv')
+    training_date = models.DateTimeField(auto_now_add=True)
+    model_summary = models.TextField()
+
+    class Meta:
+        db_table = 'modelnajla'
+        managed = True
+
+    def __str__(self):
+        return self.model_name
     
 class ModelNada(models.Model):    
     model_name = models.CharField(max_length=255)    
